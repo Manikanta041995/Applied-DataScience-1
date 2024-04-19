@@ -169,7 +169,7 @@ def line_plot(x,y,x_label,y_label, image_name):
     plt.savefig(image_name)
     plt.show()
     
-def plot_fitted(labels, xy, xkmeans, ykmeans, centre_labels):
+def plot_fitted(labels, xy, xkmeans, ykmeans, centre_labels, image_name):
     """
     Plots clustered data as a scatter plot with determined centres shown
     parameters: 
@@ -193,8 +193,8 @@ def plot_fitted(labels, xy, xkmeans, ykmeans, centre_labels):
     ax.set_xlabel("CO2 from liquid fuel")
     ax.set_ylabel("CO2 from solid fuel")
     ax.set_xscale('log')
+    plt.savefig(image_name+"predicted")
     plt.show()
-    return
 
 def k_means(df,n):
    """
@@ -264,8 +264,8 @@ def plot_forecast(year, data, param, covar, predictions=None):
     plt.xlabel("Year")
     plt.ylabel("CO2 emissions")
     plt.title("Logistic forecast for China")
-    plt.savefig("Logistic forecast for China")
     plt.legend()
+    plt.savefig("Logistic forecast for China")
     plt.show()
 def clustering(df_cluster, x_label, y_label, image_name):
     """
@@ -295,7 +295,7 @@ def clustering(df_cluster, x_label, y_label, image_name):
     ycen = cen[:, 1]
     cen_labels = kmeans.predict(kmeans.cluster_centers_)
 
-    plot_fitted(labels, inv_scaler, xcen, ycen, cen_labels)
+    plot_fitted(labels, inv_scaler, xcen, ycen, cen_labels, image_name)
 
     cen = kmeans.cluster_centers_
     xcen = cen[:, 0]
@@ -313,8 +313,8 @@ def clustering(df_cluster, x_label, y_label, image_name):
     plt.xlabel(x_label)
     plt.ylabel(y_label)
     plt.title("Kmeans clustering")
+    plt.legend()#
     plt.savefig(image_name)
-    plt.legend()
     plt.show()
 
 # Load and preprocess the data for clustering
